@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { CoinInventoryModule } from './coin-inventory/coin-inventory.module';
+import { IdleCharactersBaseController } from './idle-character-base/controllers/idle-characters-base.controller';
+import { IdleCharacterBaseModule } from './idle-character-base/idle-character-base.module';
 
 
 @Module({
@@ -17,8 +20,11 @@ import { UsersModule } from './users/users.module';
       autoLoadEntities : true,
       synchronize : true,
     }),
-    UsersModule
+    AuthModule,
+    CoinInventoryModule,
+    IdleCharacterBaseModule
   ],
+  controllers: [IdleCharactersBaseController],
 })
 
 
