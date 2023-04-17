@@ -1,6 +1,7 @@
-import  { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn} from 'typeorm';
+import  { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany} from 'typeorm';
 import { Role } from './role.enum';
 import { CoinInventoryEntity } from 'src/coin-inventory/models/coin-inventory.entity';
+import { CityEntity } from 'src/cities/models/cities.entity';
 
 
 @Entity('user')
@@ -28,4 +29,7 @@ export class UserEntity {
 
     @OneToOne(()=> CoinInventoryEntity, (coinInventory) => coinInventory.user)
     coinInventory: CoinInventoryEntity;
+
+    @OneToMany(() => CityEntity, (cities) => cities.user)
+    cities: CityEntity[]
 }

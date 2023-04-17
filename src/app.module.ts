@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CoinInventoryModule } from './coin-inventory/coin-inventory.module';
 import { IdleCharacterBaseModule } from './idle-character-base/idle-character-base.module';
+import { CitiesModule } from './cities/cities.module';
 
 
 @Module({
@@ -21,9 +22,11 @@ import { IdleCharacterBaseModule } from './idle-character-base/idle-character-ba
     }),
     AuthModule,
     CoinInventoryModule,
-    IdleCharacterBaseModule
+    IdleCharacterBaseModule,
+    CitiesModule
   ],
   controllers: [],
+  providers: [],
 })
 
 

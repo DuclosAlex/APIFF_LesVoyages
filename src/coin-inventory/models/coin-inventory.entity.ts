@@ -6,17 +6,11 @@ export class CoinInventoryEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ default: 0})
-    gridannia_power: number;
-
-    @Column({ default: 0})
-    ul_dah_power: number;
-
-    @Column({ default: 0})
-    limsaLominsa_power: number;
-
     @Column({ default : 0})
     gold: number;
+
+    @Column({ default: 0})
+    memoquartz: number;
 
     @OneToOne(() => UserEntity)
     @JoinColumn()

@@ -13,9 +13,7 @@ export class AuthService {
     constructor(@InjectRepository(UserEntity) 
     private readonly userRepository: Repository<UserEntity>,
     private jwtService: JwtService,
-    ) {
-
-    }
+    ) {}
 
     hashPassword(password: string): Observable<string> {
         return from(bcrypt.hash(password, 12));
@@ -42,11 +40,13 @@ export class AuthService {
 
 
     validateUser(email: string, password: string): Observable<User> {
+
        return from(this.userRepository.findOne( { 
         where: {
             email: email
        }, relations: {
-            coinInventory: true
+            coinInventory: true,
+            cities: true
        }, select: ["id", "nickname", "email", "password", "role"]})).pipe(
             switchMap((user: User) => 
                 from(bcrypt.compare(password, user.password)).pipe(

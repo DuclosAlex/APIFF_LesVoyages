@@ -1,7 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import {  User } from '../models/user.interface';
 import { Observable, map } from 'rxjs';
-import { UserEntity } from '../models/user.entities';
 import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
