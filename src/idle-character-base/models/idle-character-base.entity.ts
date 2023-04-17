@@ -9,16 +9,13 @@ export class IdleCharacterBaseEntity {
     name: string;
 
     @Column()
-    travelImage: string;
-
-    @Column()
     portraitImage: string;
 
     @Column()
     cost: number;
 
     @Column()
-    travelClick: number;
+    powerClick: number;
 
     @Column()
     createdAt: Date;

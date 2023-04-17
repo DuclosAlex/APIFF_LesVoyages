@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CoinInventoryService } from './services/coin-inventory.service';
 import { CoinInventoryController } from './controllers/coin-inventory.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CoinInventoryEntity } from './models/coinInventory.entity';
+import { CoinInventoryEntity } from './models/coin-inventory.entity';
 
 @Module({
   imports: [

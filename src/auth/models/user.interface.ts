@@ -1,10 +1,13 @@
-import { CoinInventoryEntity } from "src/coin-inventory/models/coinInventory.entity";
+import { IsEmail, IsString } from "class-validator";
 import { Role } from "./role.enum";
 
-export interface CreateUser {
-    nickname?: string;
-    email?: string;
-    password?: string;
-    role? : Role;
 
+export class User {
+    id?: number;
+    nickname?: string;
+    @IsEmail()
+    email?: string;
+    @IsString()
+    password?: string;
+    role?: Role;
 }
