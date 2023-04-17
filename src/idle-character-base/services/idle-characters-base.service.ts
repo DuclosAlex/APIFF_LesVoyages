@@ -6,7 +6,7 @@ import { IdleCharacterBaseEntity } from "../models/idle-character-base.entity";
 import { CreateIdleCharacterBase } from "../models/idle-character-base.interface";
 
 @Injectable()
-export class IdleCharacterBaseService {
+export class IdleCharactersBaseService {
 
     constructor(@InjectRepository(IdleCharacterBaseEntity) private readonly idleCharacterBaseRepository: Repository<IdleCharacterBaseEntity>) {}
 

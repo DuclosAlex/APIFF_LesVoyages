@@ -2,14 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { Observable, from, switchMap, map } from 'rxjs'
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import { CreateUser } from '../models/user.interface';
+import { User } from '../models/user.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../models/user.entities';
+import { JwtService } from '@nestjs/jwt';
 
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {
+    constructor(@InjectRepository(UserEntity) 
+    private readonly userRepository: Repository<UserEntity>,
+    private jwtService: JwtService,
+    ) {
 
     }
 
@@ -17,7 +21,7 @@ export class AuthService {
         return from(bcrypt.hash(password, 12));
     }
 
-    registerAccount(user: CreateUser): Observable<CreateUser> {
+    registerAccount(user: User): Observable<User> {
         const { nickname, password, email } = user;
         
         return this.hashPassword(password).pipe(
@@ -27,12 +31,44 @@ export class AuthService {
                     email,
                     password: hashedPassword
                 })).pipe(
-                    map((user: CreateUser) => {
+                    map((user: User) => {
                         delete user.password;
                         return user;
                     })
                 );
             }),
+        );
+    }
+
+
+    validateUser(email: string, password: string): Observable<User> {
+       return from(this.userRepository.findOne( { 
+        where: {
+            email: email
+       }, relations: {
+            coinInventory: true
+       }, select: ["id", "nickname", "email", "password", "role"]})).pipe(
+            switchMap((user: User) => 
+                from(bcrypt.compare(password, user.password)).pipe(
+                    map((isValidPassword: boolean) => {
+                        if ( isValidPassword) {
+                            delete user.password;
+                            return user;
+                        }
+                    })
+                )
+            )
+       )
+    }
+
+    logUser(user: User): Observable<string> {
+        const { email, password } = user;
+        return this.validateUser( email, password).pipe(
+            switchMap((user: User) => {
+                if (user) {
+                    return from(this.jwtService.signAsync({ user}));
+                }
+            })
         );
     }
 }

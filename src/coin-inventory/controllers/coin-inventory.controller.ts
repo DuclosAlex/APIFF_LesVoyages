@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 export class CoinInventoryController {
     constructor(private coinInventoryService: CoinInventoryService) {}
 
-    @Post()
+    @Post('create')
     create(@Body() coinInventory: CoinInventoryModel): Observable<CoinInventoryModel> {
         return this.coinInventoryService.createCoinInventory(coinInventory)
     }
 
-    @Get()
+    @Get('find')
     findAll(): Observable<CoinInventoryModel[]> {
         return this.coinInventoryService.findAllCoinInventory();
     }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CoinInventoryEntity } from '../models/coinInventory.entity';
+import { CoinInventoryEntity } from '../models/coin-inventory.entity';
 import { Repository } from 'typeorm';
 import { CoinInventoryModel } from '../models/coin-inventory.interface';
 import { Observable, from } from 'rxjs';
