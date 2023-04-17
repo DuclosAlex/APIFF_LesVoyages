@@ -1,7 +1,7 @@
 import { UserEntity } from "src/auth/models/user.entities";
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
 
-@Entity('inventory')
+@Entity('coin-inventory')
 export class CoinInventoryEntity {
     @PrimaryGeneratedColumn()
     id: number;
