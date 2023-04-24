@@ -3,8 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CoinInventoryModule } from './coin-inventory/coin-inventory.module';
-import { IdleCharacterBaseModule } from './idle-character-base/idle-character-base.module';
-import { CitiesModule } from './cities/cities.module';
+import { CitiesModule } from './cities/city.module';
+import { IdleCityCharacterModule } from './idle-city-character/idle-city-character.module';
 
 
 @Module({
@@ -22,8 +22,8 @@ import { CitiesModule } from './cities/cities.module';
     }),
     AuthModule,
     CoinInventoryModule,
-    IdleCharacterBaseModule,
-    CitiesModule
+    CitiesModule,
+    IdleCityCharacterModule
   ],
   controllers: [],
   providers: [],

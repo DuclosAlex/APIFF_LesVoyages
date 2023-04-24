@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserEntity } from 'src/auth/models/user.entities';
-import { CityEntity } from 'src/cities/models/cities.entity';
+import { CityEntity } from 'src/cities/models/city.entity';
 import { CoinInventoryEntity } from 'src/coin-inventory/models/coin-inventory.entity';
 
 @Injectable()

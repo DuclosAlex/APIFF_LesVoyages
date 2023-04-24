@@ -1,11 +1,11 @@
 import { Controller, Body, Get, Post, Param, ParseIntPipe } from '@nestjs/common';
 import  { Observable} from 'rxjs'
-import { CitiesService } from '../services/cities.service';
-import { CityModel } from '../models/cities.interface';
+import { CityService } from '../services/city.service';
+import { CityModel } from '../models/city.interface';
 
-@Controller('cities')
-export class CitiesController {
-    constructor(private cityService: CitiesService) {}
+@Controller('city')
+export class CityController {
+    constructor(private cityService: CityService) {}
 
     @Post('create')
     createCity(@Body() city: CityModel): Observable<CityModel> {

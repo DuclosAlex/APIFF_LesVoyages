@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Observable, from } from 'rxjs'
 import { Repository } from 'typeorm';
-import { CityEntity } from '../models/cities.entity';
-import { CityModel } from '../models/cities.interface';
+import { CityEntity } from '../models/city.entity';
+import { CityModel } from '../models/city.interface';
 
 @Injectable()
-export class CitiesService {
+export class CityService {
     constructor(
         @InjectRepository(CityEntity)
         private readonly cityRepository: Repository<CityEntity>,
@@ -20,6 +20,8 @@ export class CitiesService {
         return from(this.cityRepository.findOne( {
             where : {
                 id: id
+            }, relations : {
+                idleCityCharacters : true
             }
         }))
     }

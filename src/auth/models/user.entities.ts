@@ -1,7 +1,7 @@
 import  { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany} from 'typeorm';
 import { Role } from './role.enum';
 import { CoinInventoryEntity } from 'src/coin-inventory/models/coin-inventory.entity';
-import { CityEntity } from 'src/cities/models/cities.entity';
+import { CityEntity } from 'src/cities/models/city.entity';
 
 
 @Entity('user')
